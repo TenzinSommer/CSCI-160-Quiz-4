@@ -1,0 +1,29 @@
+// time complexity is n^2 since it's doing a constant operation n^2 times with the 2 for loops
+// space complexity is however much space it takes to hold 2 ints because i made those 2 ints
+
+public static int diagonalDifference(List<List<Integer>> arr) {
+    // Write your code here
+        int leftDiagSum = 0;
+        int rightDiagSum = 0;
+        
+        for (int i = 0; i < arr.size(); i++) { 
+            for (int j = 0; j < arr.size(); j++) {
+                if (i == j) {
+                    leftDiagSum += arr.get(i).get(j);
+                }
+                if (Math.abs(i - j) == (arr.size() - 1)) {
+                    rightDiagSum += arr.get(i).get(j);
+                }
+            }
+        }
+        
+        if (arr.size() % 2 == 0) {
+            rightDiagSum += arr.get(arr.size() / 2).get(arr.size() / 2);
+        }
+        else if (arr.size() % 2 == 1) {
+            rightDiagSum += arr.get(arr.size() / 2).get(arr.size() / 2);
+        }
+        
+        //return rightDiagSum;
+        return Math.abs(leftDiagSum - rightDiagSum);
+    }
